@@ -1,10 +1,10 @@
 const express = require("express")
 const router = express.Router()
+const GuildMate = require("../models/guildmate")
 
 // Getting all guild mates
-router.get("/", (req, res) => {
-    console.log("clicked");
-    res.send("no you")
+router.get("/", async (req, res) => {
+    
 })
 
 // Getting specific guild mate
