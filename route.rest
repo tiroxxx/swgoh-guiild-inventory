@@ -1,4 +1,4 @@
-GET http://localhost:3000/guildmates
+GET http://localhost:3000/guildmates/
 
 ###
 
@@ -10,4 +10,17 @@ Content-Type: application/json
     "startingGP": "5000000",
     "twDefense": "300",
     "twOffense": "40"
+}
+
+###
+
+DELETE http://localhost:3000/guildmates/6083222177c2203060e5cf49
+
+###
+
+PATCH http://localhost:3000/guildmates/6083268bd9f923116cafdd97
+Content-Type: application/json
+
+{
+    "name": "chris"
 }

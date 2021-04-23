@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
 
 // Getting specific guild mate
 router.get("/:id", getGuildmate, (req, res) => {
-    
+    res.send(res.guildmate)
 })
 
 // Creating a guild mate
@@ -37,17 +37,41 @@ router.post("/", async (req, res) => {
 })
 
 // Updating a guild mate
-router.patch("/:id", (req, res) => {
-    
+router.patch("/:id", getGuildmate, async (req, res) => {
+    if (req.body.name != null) {
+        res.guildmate.name = req.body.name
+    }
+    if (req.body.startingGP != null) {
+        res.guildmate.startingGP = req.body.startingGP
+    }
+    if (req.body.twDefense != null) {
+        res.guildmate.twDefense = req.body.twDefense
+    }
+    if (req.body.twOffense != null) {
+        res.guildmate.twOffense = req.body.twOffense
+    }
+    try {
+        const updatedGuildmate = await res.guildmate.save()
+        res.json(updatedGuildmate)
+    }
+    catch (err) {
+        res.status(400).json({ message: err.message })
+    }
 })
 
 // Deleting a guild mate
-router.delete("/:id", (req, res) => {
-    
+router.delete("/:id", getGuildmate, async (req, res) => {
+    try {
+        await res.guildmate.remove()
+        res.json({ message: "Deleted Guildmate" })
+    }
+    catch (err) {
+        res.status(500).json({ message: err.message })
+    }
 })
 
 async function getGuildmate(req, res, next) {
-    try{
+    try {
         guildmate = await Guildmate.findById(req.params.id)
         if (guildmate == null) {
             return res.status(404).json({ message: "Cannot find Guildmate" })
