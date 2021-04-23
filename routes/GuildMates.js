@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
 })
 
 // Getting specific guild mate
-router.get("/:id", (req, res) => {
+router.get("/:id", getGuildmate, (req, res) => {
     
 })
 
@@ -45,6 +45,21 @@ router.patch("/:id", (req, res) => {
 router.delete("/:id", (req, res) => {
     
 })
+
+async function getGuildmate(req, res, next) {
+    try{
+        guildmate = await Guildmate.findById(req.params.id)
+        if (guildmate == null) {
+            return res.status(404).json({ message: "Cannot find Guildmate" })
+        }
+    }
+    catch (err) {
+        return res.status(500).json({ message: err.message })
+    }
+
+    res.guildmate = guildmate
+    next()
+}
 
 
 module.exports = router
