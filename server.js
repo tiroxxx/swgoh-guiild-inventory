@@ -17,8 +17,8 @@ app.use((req, res, next) => {
     next();
 });
 
-const guildMatesRouter = require("./routes/GuildMates")
-app.use("/guildmates", guildMatesRouter)
+const guildmatesRouter = require("./routes/Guildmates")
+app.use("/guildmates", guildmatesRouter)
 
 
 app.listen(3000, () => console.log("Server Started"))

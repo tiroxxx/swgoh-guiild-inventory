@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-const guildMateSchema = new mongoose.Schema({
+const guildmateSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -19,4 +19,4 @@ const guildMateSchema = new mongoose.Schema({
     },
 })
 
-module.exports = mongoose.model("GuildMate", guildMateSchema)
+module.exports = mongoose.model("Guildmate", guildmateSchema)
