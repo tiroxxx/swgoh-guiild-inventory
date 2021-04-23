@@ -32,7 +32,7 @@ router.post("/", async (req, res) => {
         res.status(201).json(newGuildmate)
     }
     catch (err) {
-        res.status(400)
+        res.status(400).json({ message: err.message })
     }
 })
 

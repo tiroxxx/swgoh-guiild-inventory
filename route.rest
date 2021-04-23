@@ -1,1 +1,13 @@
 GET http://localhost:3000/guildmates
+
+###
+
+POST http://localhost:3000/guildmates
+Content-Type: application/json
+
+{
+    "name": "tiroxxx",
+    "startingGP": "5000000",
+    "twDefense": "300",
+    "twOffense": "40"
+}
