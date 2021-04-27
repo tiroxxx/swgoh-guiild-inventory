@@ -24,3 +24,7 @@ Content-Type: application/json
 {
     "name": "chris"
 }
+
+###
+
+GET http://swgoh.gg/api/player/736951577
