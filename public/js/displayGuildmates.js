@@ -1,5 +1,6 @@
+import handleEdit from "./handleEdit.js"
+
 export default function displayGuildmates(guildMate) {
-    console.log(guildMate);
         // Create table row with its elements
         const tableRow = document.createElement("tr")
         tableRow.setAttribute("data-id", guildMate._id)
@@ -19,4 +20,6 @@ export default function displayGuildmates(guildMate) {
         // Append table tada to table
         tableRow.append(name, startingGP, twDefense, twOffense, button)
         table.append(tableRow)
+        // Handle editting row
+        button.addEventListener("click", handleEdit)
 }
