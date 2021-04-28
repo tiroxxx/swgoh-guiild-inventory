@@ -1,5 +1,4 @@
-export default function displayGuildmates(guildMates) {
-    guildMates.forEach(guildMate => {
+export default function displayGuildmates(guildMate) {
         // Create table data
         const tableRow = document.createElement("tr")
         const name = document.createElement("td")
@@ -14,5 +13,4 @@ export default function displayGuildmates(guildMates) {
         // Append table tada to table
         tableRow.append(name, startingGP, twDefense, twOffense)
         table.append(tableRow)
-    })
 }
