@@ -1,3 +1,5 @@
+import saveGuildmates from "./saveGuildmates.js"
+
 export default function handleFormSubmit(e) {
     e.preventDefault()
 
@@ -6,5 +8,12 @@ export default function handleFormSubmit(e) {
     const twDefense = document.querySelector("#tw-defense").value
     const twOffense = document.querySelector("#tw-offense").value
 
-    console.log(`${name} ${startingGP} ${twDefense} ${twOffense}`);
+    const guildMate = {
+        name: name,
+        startingGP: startingGP,
+        twDefense: twDefense,
+        twOffense: twOffense
+    }
+
+    saveGuildmates(guildMate)
 }
