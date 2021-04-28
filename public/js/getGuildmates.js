@@ -1,5 +1,4 @@
 
-
 export default async function getGuildmates() {
     try {
         const response = await axios.get("http://localhost:3000/guildmates")
