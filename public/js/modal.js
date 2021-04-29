@@ -1,4 +1,6 @@
 import updateGuildmate from "./updateGuildmates.js"
+import getGuildmates from "./getGuildmates.js"
+import displayGuildmates from "./displayGuildmates.js"
 
 // Modal elements
 const modalForm = document.querySelector("#modal-form")
@@ -17,9 +19,18 @@ modalForm.addEventListener("submit", async e => {
         twDefense: modalTwDefense.value,
         twOffense: modalTwOffense.value
     }
+    // Hide modal
     modal.style.display = "none"
-    const responseGuildMate = await updateGuildmate(updatedGuildMate, guildMateId)
-    console.log(responseGuildMate);
+
+    const tr = document.querySelectorAll("table > tr")
+    tr.forEach(ele => {
+        ele.remove()
+    })
+    await updateGuildmate(updatedGuildMate, guildMateId)
+    const guildMates = await getGuildmates()
+    guildMates.forEach(guildMate => {
+        displayGuildmates(guildMate)
+    })
 })
 
 export default function handleEdit() {

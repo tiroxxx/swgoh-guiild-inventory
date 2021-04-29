@@ -5,11 +5,19 @@ import displayGuildmates from "./displayGuildmates.js"
 const form = document.querySelector("#form")
 form.addEventListener("submit", handleFormSubmit)
 
-const guildMates = await getGuildmates()
-// Display guild mates
-guildMates.forEach(guildMate => {
-    displayGuildmates(guildMate)
-})
+async function start() {
+    // Display guild mates
+    const tr = document.querySelectorAll("table > tr")
+    tr.forEach(ele => {
+        ele.remove()
+    })
+    const guildMates = await getGuildmates()
+    displayGuildmates(guildMates)
+
+}
+
+start()
+
 
 
 

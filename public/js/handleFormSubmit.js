@@ -1,4 +1,4 @@
-import saveGuildmates from "./saveGuildmates.js"
+import saveGuildmate from "./saveGuildmate.js"
 
 export default function handleFormSubmit(e) {
     e.preventDefault()
@@ -15,5 +15,5 @@ export default function handleFormSubmit(e) {
         twOffense: twOffense
     }
 
-    saveGuildmates(guildMate)
+    saveGuildmate(guildMate)
 }
