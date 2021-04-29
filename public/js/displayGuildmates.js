@@ -1,10 +1,10 @@
-import handleEdit from "./handleEdit.js"
+import handleEdit from "./modal.js"
 
 export default function displayGuildmates(guildMate) {
+        const table = document.querySelector("#table")
         // Create table row with its elements
         const tableRow = document.createElement("tr")
         tableRow.setAttribute("data-id", guildMate._id)
-
         const name = document.createElement("td")
         const startingGP = document.createElement("td")
         const twDefense = document.createElement("td")
