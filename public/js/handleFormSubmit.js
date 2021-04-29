@@ -1,6 +1,8 @@
+import displayGuildmates from "./displayGuildmates.js"
+import getGuildmates from "./getGuildmates.js"
 import saveGuildmate from "./saveGuildmate.js"
 
-export default function handleFormSubmit(e) {
+export default async function handleFormSubmit(e) {
     e.preventDefault()
 
     const name = document.querySelector("#name").value
@@ -15,5 +17,7 @@ export default function handleFormSubmit(e) {
         twOffense: twOffense
     }
 
-    saveGuildmate(guildMate)
+    await saveGuildmate(guildMate)
+    const guildMates = await getGuildmates()
+    displayGuildmates(guildMates)
 }

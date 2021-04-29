@@ -5,7 +5,6 @@ export default async function saveGuildmate(guildMate) {
     try {
         const response = await axios.post("http://localhost:3000/guildmates", guildMate)
         const savedGuildmate = response.data
-        displayGuildmates(savedGuildmate)
     }
     catch (err) {
         console.error(err)

@@ -19,7 +19,7 @@ modalForm.addEventListener("submit", async e => {
         twDefense: modalTwDefense.value,
         twOffense: modalTwOffense.value
     }
-    // Hide modal
+    
     modal.style.display = "none"
 
     const tr = document.querySelectorAll("table > tr")
@@ -28,23 +28,21 @@ modalForm.addEventListener("submit", async e => {
     })
     await updateGuildmate(updatedGuildMate, guildMateId)
     const guildMates = await getGuildmates()
-    guildMates.forEach(guildMate => {
-        displayGuildmates(guildMate)
-    })
+    displayGuildmates(guildMates)
 })
 
 export default function handleEdit() {
     const guildMateId = this.dataset.id
-    const modalBtn = document.querySelector("#modal-form-submit").setAttribute("data-id", guildMateId)
+    document.querySelector("#modal-form-submit").setAttribute("data-id", guildMateId)
     // Guild mates' info from table
     const guildMateInfo = document.querySelector(`[data-id="${guildMateId}"]`)
     const guildMate = {
-        _id: guildMateId,
         name: guildMateInfo.childNodes[0].textContent,
         staringGP: guildMateInfo.childNodes[1].textContent,
         twDefense: guildMateInfo.childNodes[2].textContent,
         twOffense: guildMateInfo.childNodes[3].textContent
     }
+    console.log(guildMate);
     // Add exixting info as placeholder
     modalName.setAttribute("value", guildMate.name)
     modalStartingGP.setAttribute("value", guildMate.staringGP)
