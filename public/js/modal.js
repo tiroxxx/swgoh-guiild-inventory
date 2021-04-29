@@ -8,8 +8,9 @@ const modalStartingGP = document.querySelector("#modal-starting-gp")
 const modalTwDefense = document.querySelector("#modal-tw-defense")
 const modalTwOffense = document.querySelector("#modal-tw-offense")
 
-modalForm.addEventListener("submit", e => {
+modalForm.addEventListener("submit", async e => {
     e.preventDefault()
+    const guildMateId = document.querySelector("#modal-form-submit").dataset.id
     const updatedGuildMate = {
         name: modalName.value,
         staringGP: modalStartingGP.value,
@@ -17,11 +18,13 @@ modalForm.addEventListener("submit", e => {
         twOffense: modalTwOffense.value
     }
     modal.style.display = "none"
-    updateGuildmate(updatedGuildMate)
+    const responseGuildMate = await updateGuildmate(updatedGuildMate, guildMateId)
+    console.log(responseGuildMate);
 })
 
 export default function handleEdit() {
     const guildMateId = this.dataset.id
+    const modalBtn = document.querySelector("#modal-form-submit").setAttribute("data-id", guildMateId)
     // Guild mates' info from table
     const guildMateInfo = document.querySelector(`[data-id="${guildMateId}"]`)
     const guildMate = {
