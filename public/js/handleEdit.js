@@ -11,17 +11,18 @@ export default function handleEdit() {
     const modalTwOffense = document.querySelector("#modal-tw-offense")
     // Guild mates' info from table
     const guildMateInfo = document.querySelector(`[data-id="${guildMateId}"]`)
-    const guildMateName = guildMateInfo.childNodes[0].textContent
-    const guildMateStartingGP = guildMateInfo.childNodes[1].textContent
-    const guildMateTwDefense = guildMateInfo.childNodes[2].textContent
-    const guildMateTwOffense = guildMateInfo.childNodes[3].textContent
+    const guildMate = {
+        name: guildMateInfo.childNodes[0].textContent,
+        staringGP: guildMateInfo.childNodes[0].textContent,
+        twDefense: guildMateInfo.childNodes[2].textContent,
+        twOffense: guildMateInfo.childNodes[3].textContent
+    }
     // Add exixting info as placeholder
-    modalName.setAttribute("value", guildMateName)
-    modalStartingGP.setAttribute("value", guildMateStartingGP)
-    modalTwDefense.setAttribute("value", guildMateTwDefense)
-    modalTwOffense.setAttribute("value", guildMateTwOffense)
-
-    console.log(guildMateName, guildMateStartingGP, guildMateTwDefense, guildMateTwOffense);
+    modalName.setAttribute("value", guildMate.name)
+    modalStartingGP.setAttribute("value", guildMate.staringGP)
+    modalTwDefense.setAttribute("value", guildMate.twDefense)
+    modalTwOffense.setAttribute("value", guildMate.twOffense)
+    // Show modal
     modal.style.display = "block"
 
     modalForm.addEventListener("submit", handleEditSubmit)

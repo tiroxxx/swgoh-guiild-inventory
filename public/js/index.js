@@ -1,13 +1,17 @@
 import getGuildmates from "./getGuildmates.js"
 import handleFormSubmit from "./handleFormSubmit.js"
+import displayGuildmates from "./displayGuildmates.js"
 
-const button = document.querySelector("#button")
-button.textContent = "refresh"
 const container = document.querySelector("#container")
 const table = document.querySelector("#table")
 const form = document.querySelector("#form")
 
-button.addEventListener("click", getGuildmates)
+const guildMates = await getGuildmates()
+// Display guild mates
+guildMates.forEach(guildMate => {
+    displayGuildmates(guildMate)
+})
+
 form.addEventListener("submit", handleFormSubmit)
 
 
