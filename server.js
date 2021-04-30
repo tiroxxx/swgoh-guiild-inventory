@@ -15,7 +15,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static("public"))
 
-const guildmatesRouter = require("./routes/Guildmates.js")
+const guildmatesRouter = require("./routes/guildmates")
 
 app.use("/api/guildmates", guildmatesRouter)
 
