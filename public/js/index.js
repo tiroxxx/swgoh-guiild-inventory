@@ -66,6 +66,9 @@ function handleEdit() {
 }
 
 function displayGuildmates(guildMates) {
+    if(!guildMates) {
+        return
+    }
     const tr = document.querySelectorAll("table > tr")
     tr.forEach(ele => {
         ele.remove()
