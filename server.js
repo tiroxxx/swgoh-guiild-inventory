@@ -5,7 +5,7 @@ const mongoose = require("mongoose")
 const axios = require("axios")
 require("dotenv").config()
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/swgoh", { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
 
 db.on("error", err => console.error(error))
@@ -15,8 +15,8 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static("public"))
 
-// const guildmatesRouter = require("./routes/Guildmates")
-// app.use("/api/guildmates", guildmatesRouter)
+const guildmatesRouter = require("./routes/Guildmates")
+app.use("/api/guildmates", guildmatesRouter)
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "/public/index.html"))
