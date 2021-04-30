@@ -29,4 +29,5 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "/public/index.html"))
 })
 
-app.listen(3000, () => console.log("Server Started"))
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`Server Started on port ${port}`))
