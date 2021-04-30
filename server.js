@@ -5,7 +5,7 @@ const mongoose = require("mongoose")
 const axios = require("axios")
 require("dotenv").config()
 
-mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGODB_URI || process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
 
 db.on("error", err => console.error(error))
