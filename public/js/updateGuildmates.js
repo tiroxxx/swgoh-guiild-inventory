@@ -1,6 +1,6 @@
-export default async function updateGuildmate(guildMate, id) {
+async function updateGuildmate(guildMate, id) {
     try {
-        const response = await axios.patch("http://localhost:3000/guildmates/" + id, guildMate)
+        const response = await axios.patch("/api/guildmates/" + id, guildMate)
         const guildMates = response.data
         return guildMates
     }

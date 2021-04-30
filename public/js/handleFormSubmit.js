@@ -1,8 +1,5 @@
-import displayGuildmates from "./displayGuildmates.js"
-import getGuildmates from "./getGuildmates.js"
-import saveGuildmate from "./saveGuildmate.js"
 
-export default async function handleFormSubmit(e) {
+async function handleFormSubmit(e) {
     e.preventDefault()
 
     const name = document.querySelector("#name").value
@@ -21,3 +18,5 @@ export default async function handleFormSubmit(e) {
     const guildMates = await getGuildmates()
     displayGuildmates(guildMates)
 }
+
+module.exports = handleFormSubmit

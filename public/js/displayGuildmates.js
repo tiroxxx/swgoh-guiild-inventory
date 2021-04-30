@@ -1,6 +1,6 @@
-import handleEdit from "./modal.js"
+const handleEdit = require("./modal.js")
 
-export default function displayGuildmates(guildMates) {
+function displayGuildmates(guildMates) {
         const tr = document.querySelectorAll("table > tr")
         tr.forEach(ele => {
                 ele.remove()
@@ -31,3 +31,5 @@ export default function displayGuildmates(guildMates) {
         })
 
 }
+
+module.exports = displayGuildmates

@@ -1,8 +1,6 @@
-import displayGuildmates from "./displayGuildmates.js"
-
-export default async function getGuildmates() {
+async function getGuildmates() {
     try {
-        const response = await axios.get("http://localhost:3000/guildmates")
+        const response = await axios.get("/api/guildmates")
         const guildMates = response.data
         return guildMates
     }
@@ -10,3 +8,5 @@ export default async function getGuildmates() {
         console.error(err)
     }
 }
+
+module.exports = getGuildmates
