@@ -5,16 +5,10 @@ start()
 
 async function start() {
     // Display guild mates
-    const tr = document.querySelectorAll("table > tr")
-    tr.forEach(ele => {
-        ele.remove()
-    })
     const guildMates = await getGuildmates()
     displayGuildmates(guildMates)
-
 }
 
-// MODAL
 // Modal elements
 const modalForm = document.querySelector("#modal-form")
 const modal = document.querySelector("#modal");
@@ -35,10 +29,6 @@ modalForm.addEventListener("submit", async e => {
     
     modal.style.display = "none"
 
-    const tr = document.querySelectorAll("table > tr")
-    tr.forEach(ele => {
-        ele.remove()
-    })
     await updateGuildmate(updatedGuildMate, guildMateId)
     const guildMates = await getGuildmates()
     displayGuildmates(guildMates)
@@ -49,18 +39,17 @@ function handleEdit() {
     document.querySelector("#modal-form-submit").setAttribute("data-id", guildMateId)
     // Guild mates' info from table
     const guildMateInfo = document.querySelector(`[data-id="${guildMateId}"]`)
-    const guildMate = {
-        name: guildMateInfo.childNodes[0].textContent,
-        staringGP: guildMateInfo.childNodes[1].textContent,
-        twDefense: guildMateInfo.childNodes[2].textContent,
-        twOffense: guildMateInfo.childNodes[3].textContent
-    }
-    console.log(guildMate);
+    const guildMateName = guildMateInfo.childNodes[0].textContent
+    const guildMateStartingGP = guildMateInfo.childNodes[1].textContent
+    const guildMateTwDefense = guildMateInfo.childNodes[2].textContent
+    const guildMateTwOffense = guildMateInfo.childNodes[3].textContent
+
+    console.log(guildMateName, guildMateStartingGP, guildMateTwDefense, guildMateTwOffense);
     // Add exixting info as placeholder
-    modalName.setAttribute("value", guildMate.name)
-    modalStartingGP.setAttribute("value", guildMate.staringGP)
-    modalTwDefense.setAttribute("value", guildMate.twDefense)
-    modalTwOffense.setAttribute("value", guildMate.twOffense)
+    modalName.value = guildMateName
+    modalStartingGP.value = guildMateStartingGP
+    modalTwDefense.value = guildMateTwDefense
+    modalTwOffense.value = guildMateTwOffense
     // Show modal
     modal.style.display = "block"
 }
