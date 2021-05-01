@@ -32,6 +32,7 @@ modalForm.addEventListener("submit", async e => {
 
     await updateGuildmate(updatedGuildMate, guildMateId)
     const guildMates = await getGuildmates()
+
     displayGuildmates(guildMates)
 })
 
@@ -48,6 +49,7 @@ function handleEdit() {
     const guildMateStartingGP = guildMateInfo.childNodes[1].textContent
     const guildMateTwDefense = guildMateInfo.childNodes[2].textContent
     const guildMateTwOffense = guildMateInfo.childNodes[3].textContent
+
     // Add exixting info as placeholder
     modalName.value = guildMateName
     modalStartingGP.value = guildMateStartingGP
@@ -61,6 +63,7 @@ function displayGuildmates(guildMates) {
     if (!guildMates) {
         return
     }
+
     const tr = document.querySelectorAll("table > tr")
     tr.forEach(ele => {
         ele.remove()
@@ -76,6 +79,7 @@ function displayGuildmates(guildMates) {
         const twDefense = document.createElement("td")
         const twOffense = document.createElement("td")
         const button = document.createElement("button")
+        const deleteButton = document.createElement("button")
         button.setAttribute("data-id", guildMate._id)
         // Update table text
         name.textContent = guildMate.name
@@ -83,11 +87,15 @@ function displayGuildmates(guildMates) {
         twDefense.textContent = guildMate.twDefense
         twOffense.textContent = guildMate.twOffense
         button.textContent = "Edit"
+        deleteButton.textContent = "X"
         // Append table tada to table
-        tableRow.append(name, startingGP, twDefense, twOffense, button)
+        tableRow.append(name, startingGP, twDefense, twOffense, button, deleteButton)
         table.append(tableRow)
         // Handle editting row
         button.addEventListener("click", handleEdit)
+        deleteButton.addEventListener("click", () => {
+            deleteGuildmate(guildMate._id)
+        })
     })
 
 }
@@ -107,9 +115,11 @@ async function handleFormSubmit(e) {
         twOffense: twOffense
     }
 
+    form.reset();
     await saveGuildmate(guildMate)
     const guildMates = await getGuildmates()
     displayGuildmates(guildMates)
+
 }
 
 // API calls
@@ -125,10 +135,9 @@ async function getGuildmates() {
 }
 
 async function saveGuildmate(guildMate) {
-    console.log("saved mates");
     try {
-        const response = await axios.post("/api/guildmates", guildMate)
-        const savedGuildmate = response.data
+        await axios.post("/api/guildmates", guildMate)
+
     }
     catch (err) {
         console.error(err)
@@ -140,6 +149,19 @@ async function updateGuildmate(guildMate, id) {
         const response = await axios.patch("/api/guildmates/" + id, guildMate)
         const guildMates = response.data
         return guildMates
+    }
+    catch (err) {
+        console.error(err)
+    }
+}
+
+async function deleteGuildmate(id) {
+    try {
+        await axios.delete("/api/guildmates/" + id)
+        const response = await axios.get("/api/guildmates")
+        const guildMates = response.data
+        displayGuildmates(guildMates)
+
     }
     catch (err) {
         console.error(err)
