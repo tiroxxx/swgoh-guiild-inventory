@@ -68,9 +68,19 @@ function displayGuildmates(guildMates) {
     tr.forEach(ele => {
         ele.remove()
     })
+    const sortedGuildMates = [...guildMates].sort((a, b) => {
+        const aName = a.name.toLowerCase()
+        const bName = b.name.toLowerCase()
+        let comparison = 0
+
+        if(aName > bName) comparison = 1
+        else if(bName > aName) comparison = -1
+
+        return comparison
+    })
 
     const table = document.querySelector("#table")
-    guildMates.forEach(guildMate => {
+    sortedGuildMates.forEach(guildMate => {
         // Create table row with its elements
         const tableRow = document.createElement("tr")
         tableRow.setAttribute("data-id", guildMate._id)
