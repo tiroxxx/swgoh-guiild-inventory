@@ -12,6 +12,7 @@ async function start() {
 // Modal elements
 const modalForm = document.querySelector("#modal-form")
 const modal = document.querySelector("#modal");
+const modalCancelBtn = document.querySelector("#modal-form-cancel")
 const modalName = document.querySelector("#modal-name")
 const modalStartingGP = document.querySelector("#modal-starting-gp")
 const modalTwDefense = document.querySelector("#modal-tw-defense")
@@ -26,12 +27,16 @@ modalForm.addEventListener("submit", async e => {
         twDefense: modalTwDefense.value,
         twOffense: modalTwOffense.value
     }
-    
+
     modal.style.display = "none"
 
     await updateGuildmate(updatedGuildMate, guildMateId)
     const guildMates = await getGuildmates()
     displayGuildmates(guildMates)
+})
+
+modalCancelBtn.addEventListener("click", () => {
+    modal.style.display = "none"
 })
 
 function handleEdit() {
@@ -43,8 +48,6 @@ function handleEdit() {
     const guildMateStartingGP = guildMateInfo.childNodes[1].textContent
     const guildMateTwDefense = guildMateInfo.childNodes[2].textContent
     const guildMateTwOffense = guildMateInfo.childNodes[3].textContent
-
-    console.log(guildMateName, guildMateStartingGP, guildMateTwDefense, guildMateTwOffense);
     // Add exixting info as placeholder
     modalName.value = guildMateName
     modalStartingGP.value = guildMateStartingGP
@@ -55,7 +58,7 @@ function handleEdit() {
 }
 
 function displayGuildmates(guildMates) {
-    if(!guildMates) {
+    if (!guildMates) {
         return
     }
     const tr = document.querySelectorAll("table > tr")
