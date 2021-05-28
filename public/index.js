@@ -19,9 +19,23 @@ const modalTwDefense = document.querySelector("#modal-tw-defense")
 const modalTwOffense = document.querySelector("#modal-tw-offense")
 
 // Validation Alerts
-// function validationAlerts() {
-//     const success = document.querySelector
-// }
+function validationAlerts(decision) {
+    const success = document.querySelector("#success")
+    const error = document.querySelector("#error")
+
+    if (decision) {
+        success.classList.remove("hide")
+        setTimeout(() => {
+            success.classList.add("hide")
+        }, 2000)
+    }
+    if (!decision) {
+        error.classList.remove("hide")
+        setTimeout(() => {
+            error.classList.add("hide")
+        }, 2000)
+    }
+}
 
 // Updating guildmate info
 modalForm.addEventListener("submit", async e => {
@@ -123,8 +137,8 @@ async function handleFormSubmit(e) {
     const twDefense = parseInt(document.querySelector("#tw-defense").value)
     const twOffense = parseInt(document.querySelector("#tw-offense").value)
 
-    if (isNaN(startingGP)) {
-
+    if (isNaN(startingGP) || isNaN(twDefense) || isNaN(twOffense)) {
+        validationAlerts(false)
         return
     }
 
