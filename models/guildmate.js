@@ -6,15 +6,15 @@ const guildmateSchema = new mongoose.Schema({
         required: true
     },
     startingGP: {
-        type: String,
+        type: Number,
         required: true
     },
     twDefense: {
-        type: String,
+        type: Number,
         required: false
     },
     twOffense: {
-        type: String,
+        type: Number,
         required: false
     },
 })

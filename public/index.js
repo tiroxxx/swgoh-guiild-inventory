@@ -18,6 +18,12 @@ const modalStartingGP = document.querySelector("#modal-starting-gp")
 const modalTwDefense = document.querySelector("#modal-tw-defense")
 const modalTwOffense = document.querySelector("#modal-tw-offense")
 
+// Validation Alerts
+// function validationAlerts() {
+//     const success = document.querySelector
+// }
+
+// Updating guildmate info
 modalForm.addEventListener("submit", async e => {
     e.preventDefault()
     const guildMateId = document.querySelector("#modal-form-submit").dataset.id
@@ -28,14 +34,13 @@ modalForm.addEventListener("submit", async e => {
         twOffense: modalTwOffense.value
     }
 
-    modal.style.display = "none"
-
     await updateGuildmate(updatedGuildMate, guildMateId)
+    modal.style.display = "none"
     const guildMates = await getGuildmates()
 
     displayGuildmates(guildMates)
 })
-
+// Close Modal
 modalCancelBtn.addEventListener("click", () => {
     modal.style.display = "none"
 })
@@ -73,8 +78,8 @@ function displayGuildmates(guildMates) {
         const bName = b.name.toLowerCase()
         let comparison = 0
 
-        if(aName > bName) comparison = 1
-        else if(bName > aName) comparison = -1
+        if (aName > bName) comparison = 1
+        else if (bName > aName) comparison = -1
 
         return comparison
     })
@@ -114,9 +119,15 @@ async function handleFormSubmit(e) {
     e.preventDefault()
 
     const name = document.querySelector("#name").value
-    const startingGP = document.querySelector("#starting-gp").value
-    const twDefense = document.querySelector("#tw-defense").value
-    const twOffense = document.querySelector("#tw-offense").value
+    const startingGP = parseInt(document.querySelector("#starting-gp").value)
+    const twDefense = parseInt(document.querySelector("#tw-defense").value)
+    const twOffense = parseInt(document.querySelector("#tw-offense").value)
+
+    if (isNaN(startingGP)) {
+
+        return
+    }
+
 
     const guildMate = {
         name: name,
